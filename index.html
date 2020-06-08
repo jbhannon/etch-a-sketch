@@ -14,6 +14,11 @@
     </header>
     <main>
         <div class="gridContainer"></div>
+        <div id="buttons">
+            <div class="option" id="new">New</div>
+            <div class="option" id="reset">Reset</div>
+        </div>
+        
     </main>
     <footer>
         Made as part of <a href="https://www.theodinproject.com/courses/web-development-101/lessons/etch-a-sketch-project?ref=lnav">The Odin Project</a>
@@ -26,15 +31,32 @@
             for (let i = 0; i < size**2; i++) {
                 const div = document.createElement('div');
                 div.classList.add('gridItem');
-                div.addEventListener('mouseenter', () => {
-                    div.style["backgroundColor"]='black';
-                })
+                div.addEventListener('mouseenter', colorItem);
                 gridContainer.appendChild(div);
             }
         }
-        function addHoverListener(obj) {
-            
+        function colorItem () {
+            this.style["backgroundColor"]=penColor;
         }
+        function getGridSize(){
+            const size = prompt('How many rows and columns? (Enter a number between 1 and 100)', currentSize);
+            if (isNaN(size)) return;
+            currentSize = size;
+            createGrid(size);
+        }
+        function resetSquares(){
+            const items = document.querySelectorAll('.gridItem');
+            items.forEach(item => item.style['background-color'] = 'transparent');
+        }
+        let newButton = document.querySelector('#new');
+        newButton.addEventListener('click', getGridSize);
+
+        let resetButton = document.querySelector('#reset');
+        resetButton.addEventListener('click', resetSquares);
+
+        let currentSize = 16;
+        getGridSize();
+        let penColor = 'black';
     </script>
 </body>
 </html>
