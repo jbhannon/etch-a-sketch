@@ -18,6 +18,7 @@
             <div class="option" id="new">New</div>
             <div class="option" id="reset">Reset</div>
             <input type="color" id="color">
+            <div class="option" id="shade">Shading</div>
             <div class="option" id="rainbow">Rainbow!!</div>
         </div>
         
@@ -38,8 +39,26 @@
             }
         }
         function colorItem () {
-            if (!rainbowOn) this.style["backgroundColor"]=penColor;
-            else if (rainbowOn) this.style["backgroundColor"]=`hsl(${Math.random()*255}, 98%, 83%)`;
+            if (transparentOn) {
+                console.log(this.style["background-color"]);
+                if (this.style["background-color"]==="") {
+                    this.style["opacity"] = 0;
+                }
+            } else {
+                this.style["opacity"] = 1;
+            }
+            if (!rainbowOn) {
+                this.style["background-color"]=penColor;
+                
+            }
+            else if (rainbowOn) {
+                this.style["background-color"]=`hsl(${Math.random()*255}, 98%, 83%)`
+            }
+            if (transparentOn) {
+                if (this.style["opacity"] < 1) {
+                    this.style["opacity"] = +this.style["opacity"] + .1;
+                }
+            }
         }
         function getGridSize(){
             const size = prompt('How many rows and columns? (Enter a number between 1 and 100)', currentSize);
@@ -52,7 +71,10 @@
         }
         function resetSquares(){
             const items = document.querySelectorAll('.gridItem');
-            items.forEach(item => item.style['background-color'] = 'transparent');
+            items.forEach(item => {
+                item.style['background-color'] = '';
+                item.style['opacity'] = 1;
+            })
         }
 
         let currentSize = 16;
@@ -73,6 +95,13 @@
         rainbowButton.addEventListener('click', () => {
             rainbowOn = !rainbowOn;
             rainbowButton.classList.toggle('active');
+        })
+
+        let transparentOn = false;
+        let shadingButton = document.querySelector('#shade');
+        shadingButton.addEventListener('click', () => {
+            transparentOn = !transparentOn;
+            shadingButton.classList.toggle('active');
         })
         
         document.querySelector('body').style['background-color'] = `hsl(${Math.random()*255}, 98%, 83%)`;

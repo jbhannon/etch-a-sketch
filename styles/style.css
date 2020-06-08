@@ -87,10 +87,10 @@ a:hover {
 .option:active {
     box-shadow: inset 0 2px 0 rgba(141, 77, 77, 0.15);
 }
-#rainbow {
+#rainbow, #shade {
     transition: all .2s;
 }
-#rainbow:hover, .active {
+#rainbow:hover, #rainbow.active {
     box-shadow: 0 0 4px rgba(0,0,0,0.8);
     background-image: linear-gradient(90deg, hsl(0, 98%, 83%) 0%, hsl(63, 98%, 83%) 25%, hsl(127, 98%, 83%) 50%, hsl(191, 98%, 83%) 75%, hsl(255, 98%, 83%) 100%);;
     color: #222;
@@ -99,10 +99,14 @@ a:hover {
     color: black;
     transform: scale(1.1);
 }
-.active{
-    box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+#shade:hover, #shade.active{
+    box-shadow: 0 0 4px rgba(0,0,0,0.8);
+    background-color: #f8f8f8;
+    border: 1px solid #c6c6c6;
+    color: black;
+    transform: scale(1.1);
 }
-#rainbow:active {
+#rainbow:active , #shade:active{
     box-shadow:inset 0 0 4px rgba(0,0,0,0.3);
 }
 #color {
