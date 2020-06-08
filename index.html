@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/style.css">
     <title>Etch-A-Sketch</title>
 </head>
 <body>
-    <header></header>
+    <header>
+        <h1>Etch-A-Sketch</h1>
+        <h2>by Jordan Hannon</h2>
+    </header>
     <main>
         <div class="gridContainer"></div>
     </main>
-    <footer></footer>
+    <footer>
+        Made as part of <a href="https://www.theodinproject.com/courses/web-development-101/lessons/etch-a-sketch-project?ref=lnav">The Odin Project</a>
+    </footer>
     <script>
         function createGrid(size){
             const gridContainer = document.querySelector('.gridContainer');
@@ -29,14 +36,5 @@
             
         }
     </script>
-    <style>
-        .gridContainer {
-            display: grid;
-            background-color: white;
-            height: 500px;
-            width: 500px;
-            margin: 0 auto;
-        }
-    </style>
 </body>
 </html>
