@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/style.css">
     <title>Etch-A-Sketch</title>
 </head>
-<body>
+<body onload="getGridSize()">
     <header>
         <h1>Etch-A-Sketch</h1>
         <h2>by Jordan Hannon</h2>
@@ -55,7 +55,6 @@
         resetButton.addEventListener('click', resetSquares);
 
         let currentSize = 16;
-        getGridSize();
         let penColor = 'black';
     </script>
 </body>
