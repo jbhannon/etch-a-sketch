@@ -18,6 +18,7 @@
             <div class="option" id="new">New</div>
             <div class="option" id="reset">Reset</div>
             <input type="color" id="color">
+            <div class="option" id="rainbow">Rainbow!!</div>
         </div>
         
     </main>
@@ -37,7 +38,8 @@
             }
         }
         function colorItem () {
-            this.style["backgroundColor"]=penColor;
+            if (!rainbowOn) this.style["backgroundColor"]=penColor;
+            else if (rainbowOn) this.style["backgroundColor"]=`hsl(${Math.random()*255}, 98%, 83%)`;
         }
         function getGridSize(){
             const size = prompt('How many rows and columns? (Enter a number between 1 and 100)', currentSize);
@@ -52,6 +54,8 @@
             const items = document.querySelectorAll('.gridItem');
             items.forEach(item => item.style['background-color'] = 'transparent');
         }
+
+        let currentSize = 16;
         let newButton = document.querySelector('#new');
         newButton.addEventListener('click', getGridSize);
 
@@ -63,7 +67,15 @@
         colorButton.addEventListener('change', () => {
             penColor = colorButton.value;
         });
-        let currentSize = 16;
+
+        let rainbowOn = false;
+        let rainbowButton = document.querySelector('#rainbow');
+        rainbowButton.addEventListener('click', () => {
+            rainbowOn = !rainbowOn;
+            rainbowButton.classList.toggle('active');
+        })
+        
+        document.querySelector('body').style['background-color'] = `hsl(${Math.random()*255}, 98%, 83%)`;
     </script>
 </body>
 </html>
