@@ -17,6 +17,7 @@
         <div id="buttons">
             <div class="option" id="new">New</div>
             <div class="option" id="reset">Reset</div>
+            <input type="color" id="color">
         </div>
         
     </main>
@@ -40,7 +41,10 @@
         }
         function getGridSize(){
             const size = prompt('How many rows and columns? (Enter a number between 1 and 100)', currentSize);
-            if (isNaN(size)) return;
+            if (isNaN(size) || size < 1 || size > 100) {
+                getGridSize(); 
+                return;
+            } 
             currentSize = size;
             createGrid(size);
         }
@@ -54,8 +58,12 @@
         let resetButton = document.querySelector('#reset');
         resetButton.addEventListener('click', resetSquares);
 
-        let currentSize = 16;
         let penColor = 'black';
+        let colorButton = document.querySelector('#color');
+        colorButton.addEventListener('change', () => {
+            penColor = colorButton.value;
+        });
+        let currentSize = 16;
     </script>
 </body>
 </html>
